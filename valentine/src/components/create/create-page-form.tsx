@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useState, useTransition } from "react";
-import { createPage, getPublicUploadUrl } from "@/app/create/actions";
+import { createPage } from "@/app/create/actions";
 import { Loader2, X } from "lucide-react";
 
 interface CreatePageFormProps {
@@ -28,47 +28,25 @@ export default function CreatePageForm({ templateId }: CreatePageFormProps) {
         setCurrentUploadProgress(0);
 
         try {
-            // Upload sequentially for now to keep it simple
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
-                let url: string, key: string;
-                try {
-                    const result = await getPublicUploadUrl(file.name, file.type);
-                    url = result.url;
-                    key = result.key;
-                } catch (err) {
-                    console.error("Failed to get upload URL:", err);
-                    throw new Error("Failed to get upload URL");
+                const formData = new FormData();
+                formData.append("file", file);
+
+                const response = await fetch("/api/upload", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    const err = await response.json().catch(() => ({}));
+                    console.error("Upload failed:", err);
+                    throw new Error(err.error || "Upload failed");
                 }
 
-                await new Promise<void>((resolve, reject) => {
-                    const xhr = new XMLHttpRequest();
-                    xhr.open("PUT", url, true);
-                    xhr.setRequestHeader("Content-Type", file.type);
-
-                    xhr.upload.onprogress = (event) => {
-                        if (event.lengthComputable) {
-                            const percent = (event.loaded / event.total) * 100;
-                            setCurrentUploadProgress(percent);
-                        }
-                    };
-
-                    xhr.onload = () => {
-                        if (xhr.status >= 200 && xhr.status < 300) {
-                            setPhotos(prev => [...prev, key]);
-                            resolve();
-                        } else {
-                            console.error(`Upload failed: status=${xhr.status}, response=${xhr.responseText}`);
-                            reject(new Error(`Upload failed with status ${xhr.status}`));
-                        }
-                    };
-
-                    xhr.onerror = () => {
-                        console.error("XHR network error uploading to R2");
-                        reject(new Error("Network error"));
-                    };
-                    xhr.send(file);
-                });
+                const { key } = await response.json();
+                setPhotos(prev => [...prev, key]);
+                setCurrentUploadProgress(((i + 1) / files.length) * 100);
             }
         } catch (error) {
             console.error("Upload error:", error);
@@ -76,7 +54,6 @@ export default function CreatePageForm({ templateId }: CreatePageFormProps) {
         } finally {
             setUploading(false);
             setCurrentUploadProgress(0);
-            // Reset input
             e.target.value = "";
         }
     }
@@ -91,11 +68,6 @@ export default function CreatePageForm({ templateId }: CreatePageFormProps) {
             return;
         }
 
-        // Append photos array. 
-        // FormData doesn't support arrays natively in a way that our current action parser handles easily
-        // unless we use getAll.
-        // Let's pass them as JSON string or individual fields.
-        // JSON string is cleanest for the `content` field.
         formData.append("photos", JSON.stringify(photos));
 
         startTransition(async () => {
@@ -145,11 +117,6 @@ export default function CreatePageForm({ templateId }: CreatePageFormProps) {
                     <div className="grid grid-cols-4 gap-2 mt-4">
                         {photos.map((key, i) => (
                             <div key={key} className="relative group aspect-square bg-slate-100 rounded-md overflow-hidden border">
-                                {/* We don't have the signed URL here to preview easily without another fetches. 
-                                    For now just show specific icon or generic placeholder if we can't show image.
-                                    Actually, the 'key' is not a public URL unless we construct it.
-                                    Assuming we use a public bucket or have a helper.
-                                */}
                                 <div className="flex items-center justify-center h-full text-xs text-center p-1 break-all text-gray-500">
                                     Image {i + 1}
                                 </div>

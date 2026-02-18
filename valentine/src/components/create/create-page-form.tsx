@@ -50,7 +50,7 @@ export default function CreatePageForm({ templateId }: CreatePageFormProps) {
             }
         } catch (error) {
             console.error("Upload error:", error);
-            alert("Error uploading files");
+            alert("Error uploading files: " + (error instanceof Error ? error.message : "Unknown error"));
         } finally {
             setUploading(false);
             setCurrentUploadProgress(0);

@@ -1,0 +1,438 @@
+/* Proposal Template Styles - "Will You Marry Me?" */
+
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2d1b69 0%, #11001c 40%, #1a0a2e 100%);
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.backgroundVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    object-fit: cover;
+    opacity: 0.35;
+    mix-blend-mode: screen;
+    filter: saturate(1.4) contrast(1.1);
+}
+
+.musicToggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 105, 180, 0.3);
+    background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+    transition: all 0.3s ease;
+    animation: musicPulse 2s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.musicToggle:hover {
+    transform: scale(1.1);
+}
+
+.musicToggle.muted {
+    background: linear-gradient(135deg, #555 0%, #333 100%);
+    animation: bounceWiggle 1s ease-in-out infinite;
+}
+
+@keyframes bounceWiggle {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    25% {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    50% {
+        transform: scale(1.1) rotate(-5deg);
+    }
+
+    75% {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+@keyframes musicPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 4px 25px rgba(233, 30, 99, 0.7);
+    }
+}
+
+/* Boundary */
+.proposalBoundary {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    border: 3px solid rgba(233, 30, 99, 0.4);
+    border-radius: 30px;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 0 30px rgba(233, 30, 99, 0.2), inset 0 0 30px rgba(156, 39, 176, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(233, 30, 99, 0.03) 50%, rgba(255, 255, 255, 0.02) 100%);
+}
+
+.boundaryCorner {
+    position: absolute;
+    font-size: 24px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.cornerTl {
+    top: -12px;
+    left: -12px;
+}
+
+.cornerTr {
+    top: -12px;
+    right: -12px;
+}
+
+.cornerBl {
+    bottom: -12px;
+    left: -12px;
+}
+
+.cornerBr {
+    bottom: -12px;
+    right: -12px;
+}
+
+.particlesContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Card */
+.card,
+.successCard {
+    background: rgba(45, 27, 105, 0.75);
+    border-radius: 30px;
+    padding: 50px 60px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 60px rgba(233, 30, 99, 0.15);
+    max-width: 550px;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(233, 30, 99, 0.3);
+    animation: cardPulse 3s ease-in-out infinite;
+    z-index: 20;
+    position: relative;
+}
+
+@keyframes cardPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 60px rgba(233, 30, 99, 0.15);
+    }
+
+    50% {
+        transform: scale(1.01);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 80px rgba(233, 30, 99, 0.25);
+    }
+}
+
+.ringIcon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    animation: ringFloat 2s ease-in-out infinite;
+    font-size: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes ringFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+.name {
+    font-size: 3rem;
+    color: #ff6bb5;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 15px rgba(255, 107, 181, 0.4);
+}
+
+.question {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6bb5, #e91e63, #9c27b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 35px;
+}
+
+.buttonsContainer {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    min-height: 60px;
+    position: relative;
+}
+
+.btn {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btnYes {
+    background: linear-gradient(135deg, #ff6bb5 0%, #e91e63 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
+    font-size: 1.2rem;
+    padding: 18px 50px;
+}
+
+.btnYes:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(233, 30, 99, 0.5);
+}
+
+.btnNo {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.2s ease;
+}
+
+.thinkAgainWrapper {
+    display: none;
+    margin-top: 15px;
+}
+
+.thinkAgainWrapper.show {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.successTitle {
+    font-size: 3rem;
+    color: #ff6bb5;
+    margin-bottom: 15px;
+}
+
+.successMessage {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #ff6bb5;
+    margin-top: 15px;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Global animations */
+:global(.proposal-sparkle) {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(233, 30, 99, 0.3) 100%);
+    animation: proposalSparkleFloat linear forwards;
+    box-shadow: 0 0 8px 3px rgba(233, 30, 99, 0.4);
+}
+
+:global(.floating-rose) {
+    position: absolute;
+    bottom: -50px;
+    animation: floatUpRose linear forwards;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+:global(.proposal-burst) {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10001;
+    animation: proposalBurst 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+:global(.proposal-confetti) {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10001;
+    animation: proposalConfettiFall linear forwards;
+}
+
+:global(.proposal-ring-expand) {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    border: 3px solid rgba(233, 30, 99, 0.6);
+    border-radius: 50%;
+    animation: ringExpand 1.5s ease-out forwards;
+}
+
+@keyframes proposalSparkleFloat {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-100px) scale(0.2);
+        opacity: 0;
+    }
+}
+
+@keyframes floatUpRose {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes proposalBurst {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg) scale(1.5);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(0.3);
+    }
+}
+
+@keyframes proposalConfettiFall {
+    0% {
+        top: -20px;
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        top: 110vh;
+        opacity: 0;
+        transform: rotate(720deg);
+    }
+}
+
+@keyframes ringExpand {
+    0% {
+        width: 10px;
+        height: 10px;
+        opacity: 1;
+    }
+
+    100% {
+        width: 600px;
+        height: 600px;
+        opacity: 0;
+    }
+}

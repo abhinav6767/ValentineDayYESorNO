@@ -53,7 +53,7 @@ export default function TemplateForm({ initialData }: TemplateFormProps) {
     const router = useRouter();
 
     const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(formSchema) as any,
         defaultValues: {
             name: initialData?.name || "",
             description: initialData?.description || "",

@@ -6,7 +6,7 @@ import { users, creditTransactions } from "./db/schema"
 import { eq, sql } from "drizzle-orm"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-    adapter: DrizzleAdapter(db),
+    adapter: DrizzleAdapter(db) as any,
     providers: [Google],
     callbacks: {
         async session({ session, user }) {

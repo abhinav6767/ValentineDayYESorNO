@@ -31,7 +31,15 @@ export default function CreatePageForm({ templateId }: CreatePageFormProps) {
             // Upload sequentially for now to keep it simple
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
-                const { url, key } = await getPublicUploadUrl(file.name, file.type);
+                let url: string, key: string;
+                try {
+                    const result = await getPublicUploadUrl(file.name, file.type);
+                    url = result.url;
+                    key = result.key;
+                } catch (err) {
+                    console.error("Failed to get upload URL:", err);
+                    throw new Error("Failed to get upload URL");
+                }
 
                 await new Promise<void>((resolve, reject) => {
                     const xhr = new XMLHttpRequest();
@@ -41,26 +49,29 @@ export default function CreatePageForm({ templateId }: CreatePageFormProps) {
                     xhr.upload.onprogress = (event) => {
                         if (event.lengthComputable) {
                             const percent = (event.loaded / event.total) * 100;
-                            // Approximate overall progress if needed, or just show current file
                             setCurrentUploadProgress(percent);
                         }
                     };
 
                     xhr.onload = () => {
-                        if (xhr.status === 200) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
                             setPhotos(prev => [...prev, key]);
                             resolve();
                         } else {
-                            reject(new Error("Upload failed"));
+                            console.error(`Upload failed: status=${xhr.status}, response=${xhr.responseText}`);
+                            reject(new Error(`Upload failed with status ${xhr.status}`));
                         }
                     };
 
-                    xhr.onerror = () => reject(new Error("Network error"));
+                    xhr.onerror = () => {
+                        console.error("XHR network error uploading to R2");
+                        reject(new Error("Network error"));
+                    };
                     xhr.send(file);
                 });
             }
         } catch (error) {
-            console.error(error);
+            console.error("Upload error:", error);
             alert("Error uploading files");
         } finally {
             setUploading(false);

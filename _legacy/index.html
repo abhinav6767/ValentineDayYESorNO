@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-heart">❤️</div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+
+    <!-- Configuration File - EDIT THIS to customize! -->
+    <script src="config.js"></script>
+
+    <!-- Background Video - Perfect.mp4 -->
+    <video id="bgVideo" class="background-video" autoplay loop playsinline muted>
+        <source id="bgVideoSource" src="./Video/Perfect.mp4" type="video/mp4">
+    </video>
+
+    <!-- Music Toggle Button -->
+    <button class="music-toggle muted" id="musicToggle" onclick="toggleMusic()">🔇</button>
+
+    <!-- Valentine Border/Boundary -->
+    <div class="valentine-boundary" id="valentineBoundary">
+        <div class="boundary-corner corner-tl">💕</div>
+        <div class="boundary-corner corner-tr">💕</div>
+        <div class="boundary-corner corner-bl">💕</div>
+        <div class="boundary-corner corner-br">💕</div>
+    </div>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Main Question Page -->
+    <div class="container" id="questionPage">
+        <div class="card">
+            <div class="heart-icon">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M16 28C16 28 3 18 3 10C3 5.58172 6.58172 2 11 2C13.5 2 15.5 3.5 16 4C16.5 3.5 18.5 2 21 2C25.4183 2 29 5.58172 29 10C29 18 16 28 16 28Z"
+                        fill="url(#heartGradient)" />
+                    <defs>
+                        <linearGradient id="heartGradient" x1="16" y1="2" x2="16" y2="28"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FF6B9D" />
+                            <stop offset="1" stop-color="#E91E63" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <h1 class="name" id="recipientName">Muskaan,</h1>
+            <h2 class="question">will you be my valentine?</h2>
+
+            <div class="buttons-container">
+                <button class="btn btn-yes" id="yesBtn">Yes!</button>
+                <div class="no-btn-wrapper" id="noBtnWrapper">
+                    <button class="btn btn-no" id="noBtn">No</button>
+                </div>
+            </div>
+
+            <p class="hint" id="hint">It really wants you to say yes!</p>
+            <div class="think-again-wrapper" id="thinkAgainWrapper">
+                <button class="btn btn-think-again" id="thinkAgainBtn">Think again!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Page -->
+    <div class="container hidden" id="successPage">
+        <!-- Floating Polaroid Photos Background -->
+        <div class="polaroid-container" id="polaroidContainer"></div>
+
+        <div class="success-card">
+            <div class="confetti-container" id="confettiContainer"></div>
+            <div class="success-heart">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M16 28C16 28 3 18 3 10C3 5.58172 6.58172 2 11 2C13.5 2 15.5 3.5 16 4C16.5 3.5 18.5 2 21 2C25.4183 2 29 5.58172 29 10C29 18 16 28 16 28Z"
+                        fill="url(#successHeartGradient)" />
+                    <defs>
+                        <linearGradient id="successHeartGradient" x1="16" y1="2" x2="16" y2="28"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FF6B9D" />
+                            <stop offset="1" stop-color="#E91E63" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1 class="success-title">I knew it.</h1>
+            <p class="success-message">See you soon.</p>
+            <p class="love-text">Love</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

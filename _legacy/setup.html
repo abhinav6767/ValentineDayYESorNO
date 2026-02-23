@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Your Valentine's Website 💕</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="setup-styles.css">
+</head>
+
+<body>
+    <div class="setup-container">
+        <div class="setup-card">
+            <div class="setup-header">
+                <div class="heart-icon">💕</div>
+                <h1>Setup Your Valentine's Website</h1>
+                <p>Fill in the details below to create a personalized experience</p>
+            </div>
+
+            <form id="setupForm">
+                <!-- Name Section -->
+                <div class="form-section">
+                    <h2>👤 Names</h2>
+                    <div class="form-group">
+                        <label for="recipientName">Her Name *</label>
+                        <input type="text" id="recipientName" name="recipientName" placeholder="e.g., Sarah" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="senderName">Your Name</label>
+                        <input type="text" id="senderName" name="senderName" placeholder="e.g., Mike">
+                    </div>
+                </div>
+
+                <!-- Background Music Section -->
+                <div class="form-section">
+                    <h2>🎵 Background Music</h2>
+                    <div class="form-group">
+                        <label for="backgroundMusic">Upload Music/Video (MP4 or MP3)</label>
+                        <input type="file" id="backgroundMusic" name="backgroundMusic"
+                            accept="video/mp4,audio/mp3,audio/mpeg">
+                        <p class="hint">Optional: Upload your favorite song or romantic music</p>
+                    </div>
+                </div>
+
+                <!-- Photos Section -->
+                <div class="form-section">
+                    <h2>📸 Photo Gallery</h2>
+                    <div class="form-group">
+                        <label for="photos">Upload Photos (JPG, PNG, WEBP)</label>
+                        <input type="file" id="photos" name="photos" accept="image/*" multiple>
+                        <p class="hint">Select multiple photos of your memories together</p>
+                    </div>
+                    <div id="photoPreview" class="photo-preview"></div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">
+                        <span>✨ Create My Valentine's Site</span>
+                    </button>
+                </div>
+
+                <!-- Progress -->
+                <div id="progressBar" class="progress-bar" style="display: none;">
+                    <div class="progress-fill"></div>
+                    <p class="progress-text">Setting up your website...</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="setup.js"></script>
+</body>
+
+</html>

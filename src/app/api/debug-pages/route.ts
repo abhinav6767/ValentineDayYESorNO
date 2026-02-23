@@ -16,7 +16,7 @@ export async function GET() {
     const [anonymous] = await db.select({ count: count() }).from(pages).where(isNull(pages.userId));
 
     // Get user pages if logged in
-    let userPages = [];
+    let userPages: (typeof pages.$inferSelect)[] = [];
     if (userId) {
         userPages = await db.select().from(pages).where(eq(pages.userId, userId));
     }

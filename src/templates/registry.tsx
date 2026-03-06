@@ -14,5 +14,8 @@ export const templateRegistry: Record<string, any> = {
     "birthday": dynamic(() => import("@/components/templates/birthday/BirthdayTemplate"), {
         loading: () => <div className="flex h-screen w-full items-center justify-center bg-neutral-950 text-orange-400 animate-pulse">Loading Template...</div>
     }),
+    "city": dynamic(() => import("@/components/templates/city/CityTemplate"), {
+        loading: () => <div className="flex h-screen w-full items-center justify-center bg-teal-900 text-amber-300 animate-pulse">Loading Template...</div>
+    }),
     // Add more templates here
 };

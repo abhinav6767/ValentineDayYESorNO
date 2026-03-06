@@ -1,0 +1,886 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Cormorant+Infant:wght@300;400;500;600;700&family=Cormorant+Upright:wght@300;400;500;600;700&family=Cormorant:wght@300;400;500;600;700&family=Gotu&family=Manrope:wght@200;300;400;500&family=Yaldevi:wght@200;300;400;500;600&display=swap');
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1502px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #0b2628;
+    color: #e4d0a1;
+    font-family: 'Cormorant Upright', serif;
+}
+
+/* MUSIC BUTTON */
+.musicBtn {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(228, 208, 161, 0.2);
+    border: 1px solid rgba(228, 208, 161, 0.4);
+    color: #e4d0a1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.musicBtn:hover {
+    background: rgba(228, 208, 161, 0.4);
+    transform: scale(1.05);
+}
+
+.musicBtnActive {
+    background: rgba(228, 208, 161, 0.6);
+}
+
+/* TALL BG CONTAINER */
+.tallBgContainer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fullBgImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: 0;
+    /* Clip the top 6% of the image's own height (reduced 70% from 20%) */
+    clip-path: inset(6% 0 0 0);
+    /* Pull image up: 6% × 5.127 = 30.76% of parent width */
+    margin-top: -30.76%;
+}
+
+.lanternsContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.floatingLantern {
+    position: absolute;
+    width: 4vw;
+    min-width: 40px;
+    max-width: 90px;
+    filter: drop-shadow(0px 10px 15px rgba(255, 100, 0, 0.6));
+}
+
+/* ── CEREMONY BANNER LANTERNS ── */
+/* Full-width container that holds large lanterns spread across the sky area */
+.ceremonyBannerRow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* matches heroStickyOuter */
+    z-index: 3;
+    pointer-events: none;
+}
+
+.ceremonyBannerLantern {
+    position: absolute;
+    height: auto;
+    filter: drop-shadow(0 6px 20px rgba(255, 140, 0, 0.5));
+    animation: lanternFloat 4s ease-in-out infinite alternate;
+}
+
+.ceremonyBannerLantern:nth-child(odd) {
+    animation-duration: 3.8s;
+}
+
+.ceremonyBannerLantern:nth-child(even) {
+    animation-duration: 4.6s;
+    animation-delay: -2s;
+}
+
+@keyframes lanternFloat {
+    from {
+        transform: translateY(0px) rotate(-2deg);
+    }
+
+    to {
+        transform: translateY(-18px) rotate(2deg);
+    }
+}
+
+/* 1. HERO — absolutely positioned over the bg image */
+.heroStickyOuter {
+    position: absolute;
+    top: 15vh;
+    left: 0;
+    width: 100%;
+    height: calc(100vw * 0.138);
+    pointer-events: none;
+    z-index: 10;
+    overflow: visible;
+}
+
+/* 1. HERO NAMES */
+.heroNamesBlock {
+    position: sticky;
+    top: -20vh;
+    width: 100%;
+    text-align: center;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.heroName {
+    font-family: 'Aboreto', display;
+    /* Scale nicely at 1920px → ~100px, but be readable on smaller screens */
+    font-size: clamp(2.5rem, 5.5vw, 7.5rem);
+    color: #f7e8c3;
+    opacity: 0.95;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+    line-height: 1;
+}
+
+.wedsText {
+    font-family: 'Gotu', sans-serif;
+    font-size: clamp(0.8rem, 1.3vw, 2rem);
+    color: #e4d0a1;
+    letter-spacing: 0.5em;
+    margin: 0.8vh 0 1.2vh;
+    font-weight: 300;
+}
+
+/* 2. INVITATION */
+.invitationBlock {
+    position: absolute;
+    top: 36%;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    padding: 0 5%;
+}
+
+.omText {
+    font-family: 'Gotu', sans-serif;
+    color: #e4d0a1;
+    font-size: clamp(1.2rem, 1.8vw, 2rem);
+    margin-bottom: 2vh;
+}
+
+.ganeshaIcon {
+    width: clamp(60px, 8vw, 100px);
+    margin: 0 auto 3vh;
+    opacity: 0.9;
+}
+
+.blessingText {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.8rem);
+    color: #d1b88e;
+    line-height: 1.6;
+    margin-bottom: 3vh;
+    font-style: italic;
+}
+
+.divider {
+    width: 60px;
+    height: 1px;
+    background: #d1b88e;
+    margin: 0 auto 3vh;
+}
+
+.parentsText {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.8rem);
+    color: #bfa176;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* 3. INVITE JOIN */
+.inviteJoinBlock {
+    position: absolute;
+    top: 46%;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    padding: 0 5%;
+}
+
+.inviteHeader {
+    font-family: 'Gotu', sans-serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    color: #e4d0a1;
+    letter-spacing: 0.3em;
+    margin-bottom: 2vh;
+}
+
+.inviteSubHeader {
+    font-family: 'Gotu', sans-serif;
+    font-size: clamp(1.2rem, 1.8vw, 2rem);
+    color: #d1b88e;
+    margin-bottom: 3vh;
+}
+
+.inviteCouple {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vw;
+    margin-bottom: 3vh;
+}
+
+.inviteName {
+    font-family: 'Aboreto', display;
+    font-size: clamp(2.5rem, 4vw, 5rem);
+    color: #f7e8c3;
+    letter-spacing: 0.1em;
+}
+
+.inviteAmpersand {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    color: #e4d0a1;
+    font-style: italic;
+}
+
+.daughterOf {
+    font-family: 'Cormorant Upright', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.8rem);
+    color: #d1b88e;
+    line-height: 1.5;
+    margin-bottom: 4vh;
+}
+
+/* 4. EVENTS */
+.eventsBlock {
+    position: absolute;
+    top: 51%;
+    width: 80%;
+    left: 10%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: 3vw;
+    row-gap: 5vw;
+    z-index: 2;
+    padding: 0;
+}
+
+.eventCard {
+    position: relative;
+    width: 100%;
+    max-width: clamp(250px, 25vw, 400px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Base styles without transforms */
+
+@media (max-width: 1024px) {
+    .eventsBlock {
+        grid-template-columns: repeat(2, 1fr);
+        width: 90%;
+        left: 5%;
+        top: 48%;
+        row-gap: 6vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .eventsBlock {
+        grid-template-columns: 1fr;
+        top: 46%;
+        gap: 8vw;
+    }
+
+    .eventCard {
+        max-width: clamp(280px, 60vw, 400px);
+    }
+}
+
+.eventBg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+.floralTopLeft {
+    position: absolute;
+    top: -15%;
+    left: -15%;
+    width: 50%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.floralBottomRight {
+    position: absolute;
+    bottom: -15%;
+    right: -15%;
+    width: 50%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.eventContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15%;
+    z-index: 2;
+}
+
+.eventContent h3 {
+    font-family: 'Gotu', sans-serif;
+    font-size: clamp(1.2rem, 1.6vw, 3rem);
+    color: #2b5650;
+    letter-spacing: 0.1em;
+    margin-bottom: 2vh;
+}
+
+.eventDate,
+.eventVenue,
+.eventTime {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(0.9rem, 1.2vw, 1.4rem);
+    color: #2b5650;
+    margin-bottom: 0.5vh;
+}
+
+.eventMapLink {
+    margin-top: 2vh;
+    font-family: 'Gotu', sans-serif;
+    font-size: clamp(1rem, 1.2vw, 1.4rem);
+    color: #178a8a;
+    text-decoration: underline;
+}
+
+.eventMapLink:hover {
+    color: #0b4f4f;
+}
+
+/* 5. SEE ROUTE */
+.seeRouteBlock {
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+.seeRouteTitle {
+    font-family: 'Gotu', sans-serif;
+    font-size: clamp(3rem, 5vw, 6rem);
+    color: #e4d0a1;
+    letter-spacing: 0.2em;
+    line-height: 1.2;
+    margin-bottom: 2vh;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.seeRouteSub {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1.2rem, 1.8vw, 2rem);
+    color: #e4d0a1;
+    margin-bottom: 3vh;
+}
+
+.mapIconBtn {
+    display: inline-block;
+    width: clamp(80px, 10vw, 120px);
+    height: clamp(80px, 10vw, 120px);
+    background: url('/templates/city/icon-ornament.svg') no-repeat center center;
+    background-size: contain;
+    transition: transform 0.3s ease;
+    filter: invert(88%) sepia(21%) saturate(543%) hue-rotate(345deg) brightness(97%) contrast(85%);
+    /* Makes it gold/e4d0a1 */
+}
+
+.mapIconBtn:hover {
+    transform: scale(1.1);
+}
+
+/* 6. TEAL CAR SECTION */
+.tealCarSection {
+    position: relative;
+    width: 100%;
+    background-color: #0b2628;
+    overflow: hidden;
+    margin-top: -1px;
+    /* Stitching fixes */
+    display: flex;
+    justify-content: center;
+}
+
+.tealDamaskFallback {
+    width: 100%;
+    height: clamp(300px, 40vw, 500px);
+    background: url('/templates/city/teal-damask.png') repeat;
+    background-size: cover;
+}
+
+.tealCarImg {
+    position: absolute;
+    bottom: -15%;
+    left: 2%;
+    /* Centered slightly left */
+    width: 110%;
+    /* Makes it overflow nicely horizontally mimicking the framing */
+    z-index: 2;
+}
+
+.bottomBlueCar {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-width: 1200px;
+    z-index: 2;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+}
+
+/* 7. GALLERY SECTION */
+.gallerySection {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 10vh 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pinkFloralBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.galleryContent {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.meetCoupleTitle {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8vh;
+}
+
+.meetThe {
+    font-family: 'Gotu', sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 3rem);
+    color: #5d464e;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.brideGroom {
+    font-family: 'Aboreto', display;
+    font-size: clamp(3rem, 5vw, 7rem);
+    color: #5d464e;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.carouselContainer {
+    position: relative;
+    width: clamp(350px, 65vw, 700px);
+    margin: 0 auto 6vh;
+}
+
+.carouselFrameWrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 125%;
+}
+
+.galleryFrameImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 2;
+    pointer-events: none;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3));
+}
+
+.carouselPhoto {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.loveMessage {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1.2rem, 1.5vw, 1.6rem);
+    color: #5d464e;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* 8. BOTTOM SECTIONS */
+.bottomSections {
+    position: relative;
+    width: 100%;
+}
+
+.rsvpSection {
+    position: relative;
+    width: 100%;
+    padding: 15vh 0;
+    text-align: center;
+}
+
+.pinkSageTransition {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to bottom, transparent, rgba(167, 187, 161, 0.4));
+    z-index: 1;
+}
+
+.sageBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.rsvpContent {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rsvpTitle {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2vh;
+}
+
+.pleaseText {
+    font-family: 'Gotu', sans-serif;
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    color: #3b4231;
+    letter-spacing: 0.2em;
+}
+
+.rsvpText {
+    font-family: 'Aboreto', display;
+    font-size: clamp(5rem, 10vw, 12rem);
+    color: #1a2214;
+    line-height: 1;
+}
+
+.whatsappSub {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1.2rem, 1.8vw, 2rem);
+    color: #3b4231;
+    margin-bottom: 4vh;
+}
+
+.waButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(70px, 9vw, 100px);
+    height: clamp(70px, 9vw, 100px);
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.waButton:hover {
+    transform: scale(1.1);
+}
+
+.waButton svg {
+    width: 50%;
+    height: 50%;
+}
+
+.blackCarContainer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: url('/templates/city/sage-damask.png') repeat;
+    background-size: cover;
+    padding: 10vh 0;
+    z-index: 1;
+}
+
+.blackCarImg {
+    width: 100%;
+    max-width: 1200px;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+}
+
+.ttkContent {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10vh 5%;
+    text-align: center;
+}
+
+.ttkTitle {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4vh;
+}
+
+.ttkTop {
+    font-family: 'Gotu', sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 3rem);
+    color: #3b4231;
+    letter-spacing: 0.3em;
+}
+
+.ttkBottom {
+    font-family: 'Aboreto', display;
+    font-size: clamp(4rem, 6vw, 8rem);
+    color: #1a2214;
+    letter-spacing: 0.1em;
+}
+
+.ttkIntro {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1.2rem, 1.5vw, 1.6rem);
+    color: #3b4231;
+    line-height: 1.8;
+    margin-bottom: 8vh;
+    padding: 0 10%;
+}
+
+.gridInfo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 50px;
+}
+
+.infoCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.iconCircle {
+    width: 90px;
+    height: 90px;
+    border: 1px solid #3b4231;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.iconCircle svg {
+    width: 40px;
+    height: 40px;
+    color: #3b4231;
+}
+
+.infoCard h4 {
+    font-family: 'Gotu', sans-serif;
+    font-size: 1.4rem;
+    color: #1a2214;
+    margin-bottom: 15px;
+    letter-spacing: 0.1em;
+}
+
+.infoCard p {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1rem;
+    color: #3b4231;
+    line-height: 1.6;
+}
+
+.followContent {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 15vh 5%;
+}
+
+.followTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 6vh;
+}
+
+.followWord {
+    font-family: 'Gotu', sans-serif;
+    font-size: clamp(2rem, 3vw, 4rem);
+    color: #3b4231;
+    letter-spacing: 0.3em;
+}
+
+.theWord {
+    font-family: 'Cormorant Upright', serif;
+    font-size: clamp(4rem, 6vw, 7rem);
+    color: #1a2214;
+    font-style: italic;
+    margin: -15px 0;
+}
+
+.actionWord {
+    font-family: 'Aboreto', display;
+    font-size: clamp(4rem, 6vw, 8rem);
+    color: #1a2214;
+    letter-spacing: 0.1em;
+}
+
+.instaLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #3b4231;
+    transition: transform 0.3s ease;
+}
+
+.instaLink:hover {
+    transform: scale(1.05);
+}
+
+.instaText {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+    margin-bottom: 20px;
+}
+
+.instaLink svg {
+    width: 60px;
+    height: 60px;
+}
+
+/* 9. COUNTDOWN FOOTER */
+.countdownSection {
+    position: relative;
+    width: 100%;
+    padding: 15vh 5% 5vh;
+    text-align: center;
+    background-color: #0c1820;
+    /* Darker blue to match night sky */
+    overflow: hidden;
+}
+
+.sageBgFade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    object-fit: cover;
+    z-index: 0;
+    mask-image: linear-gradient(to bottom, black, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.nightSkyFallback {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    background: url('/templates/city/night-sky.png') center bottom no-repeat;
+    background-size: cover;
+    z-index: 0;
+}
+
+.countdownInner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdownTitle {
+    font-family: 'Gotu', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    color: #e4d0a1;
+    letter-spacing: 0.2em;
+    margin-bottom: 6vh;
+}
+
+.timer {
+    display: flex;
+    gap: 4vw;
+    font-family: 'Aboreto', display;
+    font-size: clamp(4rem, 8vw, 10rem);
+    color: #f7e8c3;
+    margin-bottom: 8vh;
+    letter-spacing: 0.1em;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.timer span {
+    min-width: clamp(100px, 18vw, 220px);
+}
+
+.countdownMsg {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+    color: #d1b88e;
+    max-width: 800px;
+    margin: 0 auto 10vh;
+    line-height: 1.8;
+}
+
+.copyright {
+    font-family: 'Gotu', sans-serif;
+    font-size: 1rem;
+    color: rgba(209, 184, 142, 0.6);
+    letter-spacing: 0.1em;
+}

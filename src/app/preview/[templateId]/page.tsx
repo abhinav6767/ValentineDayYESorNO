@@ -30,6 +30,20 @@ const sampleContent: Record<string, any> = {
         message: "Another year of being amazing! May this year bring you everything you've ever wished for and more. You deserve it all! 🎉",
         photos: [],
     },
+    city: {
+        groomName: "Abhishek",
+        brideName: "Kanika",
+        weddingDate: "2026-03-13T18:00:00",
+        weddingVenue: "Rambagh Palace",
+        weddingCity: "Jaipur",
+        parentsBless: "With the heavenly blessings of\nSmt. Lata Devi & Sm. Kamal Kapoor",
+        parentsNames: "Mrs. Reena & Mr. Rajiv Kapoor",
+        message: "We are both so delighted that you are able to join us in celebrating what we hope will be one of the happiest days of our lives. The affection shown to us by so many people since our roka has been incredibly moving, and has touched us both deeply. We would like to take this opportunity to thank everyone most sincerely for their kindness.\nWe are looking forward to see you at the wedding.",
+        photos: ["/templates/city/couple1.jpeg", "/templates/city/couple2.jpeg"],
+        hashtag: "#abkan",
+        whatsappNumber: "919999999999",
+        instagramHandle: "weddingmoments",
+    },
 };
 
 type Props = {
